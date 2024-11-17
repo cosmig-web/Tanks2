@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
 
     public float lifeTime = 2f;
 
+    public static int damage = 10;
+
     void Start()
     {
         Destroy(gameObject, lifeTime);
@@ -17,5 +19,10 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);   
     }
 }
