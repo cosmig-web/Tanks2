@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private AudioSource source;
 
-    public ParticleSystem particle;
+    public ParticleSystem boom;
 
  
 
@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
+        boom.Emit(100);
         source.PlayOneShot(clip);
-        particle.Emit(100);
         source.pitch = Random.Range(2.10f,2.30f);
         Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
     }
@@ -69,6 +69,13 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Bullet"))
         {
             health.TakeDamage(Bullet.damage);
+        }
+        if (collision.gameObject.CompareTag("health"))
+        {
+            if (health.TakeDamage(-10))
+            {
+                Destroy(collision.gameObject);
+            } 
         }
     }
 }

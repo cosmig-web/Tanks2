@@ -10,9 +10,11 @@ public class Bullet : MonoBehaviour
 
     public static int damage = 10;
 
+    public GameObject explosionPrefab;
+
     void Start()
     {
-        Destroy(gameObject, lifeTime);
+        Invoke("SelfDestruct", lifeTime);
     }
 
 
@@ -23,6 +25,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);   
+        SelfDestruct();  
+    }
+
+    void SelfDestruct()
+    {
+
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

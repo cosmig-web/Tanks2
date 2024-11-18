@@ -153,3 +153,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   lifeTime: 2
+  explosionPrefab: {fileID: 4531657786137733616, guid: 7fd6245a6a9e0c5408244e550b47b309, type: 3}
+  clip: {fileID: 8300000, guid: 559c0870a8f734e4f92e89c485ebc731, type: 3}

@@ -20,10 +20,23 @@ public class Health : MonoBehaviour
         currentHelth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
+        if (damage < 0 && currentHelth == maxHealth)
+        {
+            return false;
+        }
         currentHelth -= damage;
+
         currentHelth = MathF.Max(0, currentHelth);
+
         bar.transform.localScale = new Vector3((float)currentHelth / maxHealth, 1, 1);
+
+        if(currentHelth == 0)
+        {
+            onDeath.Invoke();
+        }
+
+        return true;
     }
 }
